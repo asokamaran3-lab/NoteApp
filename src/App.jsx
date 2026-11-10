@@ -1,16 +1,10 @@
 import './App.css'
+import NoteApp from './components/NoteApp'
 
 function App() {
 
 
-  return (
-    <>
-      <div>NoteApp</div>
-      {/* Steps(Navbar) */}
-      {/* Steps(SideBar) */}
-      {/* Steps(Content=components) */}
-    </>
-  )
+  return <NoteApp/>
 }
 
 export default App
