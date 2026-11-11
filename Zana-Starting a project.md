@@ -3,3 +3,4 @@
 3. Installing Tailwind through its website Instructions
 4. Creating the Git Repository.
 5. Creating the components (the main component connected to app.jsx)
+6. Creating the dynamic card by using (useState and passing the props from parent to child component )
