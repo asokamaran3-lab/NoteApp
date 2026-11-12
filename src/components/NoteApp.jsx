@@ -14,12 +14,7 @@ export default function NoteApp() {
       content: 'Going to the store',
       date: '2023-06-01'
     },
-    {
-      id: 2,
-      title: 'Studying',
-      content: 'Learn to code and web.',
-      date: '2023-06-01'
-    },]
+  ]
   )
 
   return (
@@ -28,7 +23,7 @@ export default function NoteApp() {
 
         {/* Left side of the app */}
         <div>
-        <Notes notes={notes}/>
+        <Notes information={notes}/>
         </div>
 
 

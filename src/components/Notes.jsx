@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Form from "../components/Form"
 
-export default function Notes({notes}) {
+export default function Notes({information}) {
+
+  const [showForm, setShowForm] = useState(false)
 
   return (
 
@@ -19,12 +22,32 @@ export default function Notes({notes}) {
     {/* Search input and New BUTTON */}
         <div className="flex gap-2 self-start items-center">
         <input className="border border-gray-300 rounded-2xl px-3 py-1.5" type="search" id="search" name="search" placeholder="Search"/>
-        <button className="bg-blue-400 text-white px-4 py-2 rounded-2xl font-bold cursor-pointer">New</button>
+        
+        <button
+          onClick={() => setShowForm(true)}
+          className="bg-blue-400 text-white px-4 py-2 rounded-2xl font-bold cursor-pointer
+          hover:bg-blue-600 hover:scale-105 hover:shadow-lg
+          transition-all duration-300 ease-in-out
+          active:scale-95"
+        >
+          New
+        </button>
+
         </div>
+
+        {showForm && (
+        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+
+         <div className="bg-white p-6 rounded-xl shadow-xl w-96">
+         <Form />
+        </div>
+
+       </div>
+)}
 
     {/* Notes List */}
         <div className="flex flex-col gap-2 self-start items-start w-full mt-3">
-          {notes.map((note) => (
+          {information.map((note) => (
 
          <div key={note.id} className="bg-gray-100 p-4 rounded-xl cursor-pointer w-full">
           <h3 className="font-bold">{note.title}</h3>
