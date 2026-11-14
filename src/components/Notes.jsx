@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Form from "../components/Form"
 
-export default function Notes({information}) {
+export default function Notes({data}) {
 
   const [showForm, setShowForm] = useState(false)
 
@@ -48,7 +48,7 @@ export default function Notes({information}) {
 
     {/* Notes List */}
         <div className="flex flex-col gap-2 self-start items-start w-full mt-3">
-          {information.map((note) => (
+          {data.map((note) => (
 
          <div key={note.id} className="bg-gray-100 p-4 rounded-xl cursor-pointer w-full">
           <h3 className="font-bold">{note.title}</h3>

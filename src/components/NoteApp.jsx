@@ -23,7 +23,7 @@ export default function NoteApp() {
 
         {/* Left side of the app */}
         <div>
-        <Notes information={notes}/>
+        <Notes data={notes}/>
         </div>
 
 
