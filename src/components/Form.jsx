@@ -1,6 +1,6 @@
 
 
-export default function Form() {
+export default function Form({onCancel}) {
 
  
   return (
@@ -45,7 +45,16 @@ export default function Form() {
 
       {/* Buttons */}
       <div className="flex justify-end gap-3">
-        <button className="px-5 py-2 rounded-xl border border-gray-300 text-gray-600 hover:bg-gray-100">
+        <button 
+        type="button"
+        onClick={onCancel}
+        className="px-5 py-2 rounded-xl border border-red-200
+bg-red-50 text-red-600 font-semibold
+hover:bg-red-500 hover:text-white hover:border-red-500
+hover:shadow-md hover:scale-105
+active:scale-95
+transition-all duration-300 ease-in-out
+cursor-pointer">
           Cancel
         </button>
 
