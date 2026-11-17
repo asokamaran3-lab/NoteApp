@@ -17,13 +17,29 @@ export default function NoteApp() {
   ]
   )
 
+  function addNote(title, content) {
+
+    const newNote = {
+      id: Date.now(),
+      title: title,
+      content: content,
+      date: new Date().toLocaleDateString()
+}
+
+  setNotes([...notes, newNote])
+  }
+
+    function deleteNote(id) {
+    setNotes(notes.filter((note) => note.id !== id));
+  }
+
   return (
     // Creating the main div//
     <div className="flex h-screen w-screen">
 
         {/* Left side of the app */}
         <div>
-        <Notes data={notes}/>
+        <Notes data={notes} onAddNote={addNote}  onDeleteNote={deleteNote}/>
         </div>
 
 

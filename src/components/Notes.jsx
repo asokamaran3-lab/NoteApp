@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import Form from "../components/Form"
+import { TrashIcon } from 'lucide-react'
 
-export default function Notes({data}) {
+export default function Notes({data, onAddNote, onDeleteNote}) {
 
   const [showForm, setShowForm] = useState(false)
 
+  const [search, setSearch] = useState("");
+  const filteredData = search ? data.filter((el)=> el.title.toLowerCase().includes(search.toLowerCase())) : data
   return (
 
     
@@ -21,7 +24,11 @@ export default function Notes({data}) {
 
     {/* Search input and New BUTTON */}
         <div className="flex gap-2 self-start items-center">
-        <input className="border border-gray-300 rounded-2xl px-3 py-1.5" type="search" id="search" name="search" placeholder="Search"/>
+          <input onChange={(e) => setSearch(e.target.value)}
+           className="border border-gray-300 rounded-2xl px-3 py-1.5"
+          type="search" id="search" name="search" placeholder="Search"
+          />
+
         
         <button
           onClick={() => setShowForm(true)}
@@ -34,12 +41,15 @@ export default function Notes({data}) {
         </button>
 
         </div>
-
+       
         {showForm && (
         <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
 
          <div className="bg-white p-6 rounded-xl shadow-xl w-96">
-         <Form onCancel={() => setShowForm(false)} />
+         <Form
+         onAddNote={onAddNote}
+         onClose={() => setShowForm(false)}
+         />
 
         </div>
 
@@ -47,15 +57,29 @@ export default function Notes({data}) {
 )}
 
     {/* Notes List */}
-        <div className="flex flex-col gap-2 self-start items-start w-full mt-3">
-          {data.map((note) => (
+        <div className="flex flex-col gap-2 self-start items-start w-full mt-3 h-100 overflow-auto ">
+  {filteredData?.length === 0
+  ? <p>Your Note list is empty!</p>
+  : filteredData?.map((note) => (
 
-         <div key={note.id} className="bg-gray-100 p-4 rounded-xl cursor-pointer w-full">
-          <h3 className="font-bold">{note.title}</h3>
-          <p className="text-gray-600">{note.content}</p>
-          <p className="text-gray-600">{note.date}</p>
-         </div>
-          ))};
+        <div key={note.id} className="bg-gray-100 p-4 rounded-xl w-full">
+
+  <div className="flex justify-between items-center">
+    <h3 className="font-bold">{note?.title}</h3>
+
+    <button
+      onClick={() => onDeleteNote(note.id)}
+      className="text-gray-500 hover:text-white hover:bg-red-500 p-1 rounded-md transition-colors"
+    >
+      <TrashIcon className='size-5'/>
+    </button>
+  </div>
+
+  <p className="text-gray-600">{note?.content}</p>
+  <p className="text-gray-600">{note?.date}</p>
+
+</div>
+                   ))}
 
           
         </div>
