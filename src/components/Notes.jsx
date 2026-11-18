@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Form from "../components/Form"
 import { TrashIcon } from 'lucide-react'
 
-export default function Notes({data, onAddNote, onDeleteNote}) {
+export default function Notes({data, onAddNote, onDeleteNote, onSelectNote}) {
 
   const [showForm, setShowForm] = useState(false)
 
@@ -65,16 +65,21 @@ export default function Notes({data, onAddNote, onDeleteNote}) {
               <div className="flex justify-between items-center">
                 <h3 className="font-bold">{note?.title}</h3>
 
-                <button
-                  onClick={() => onDeleteNote(note.id)}
-                  className="text-gray-500 hover:text-white hover:bg-red-500 p-1 rounded-md transition-colors"
-                >
-                  <TrashIcon className='size-5'/>
-                </button>
-              </div>
+    <button
+      onClick={(e) => {
+      e.stopPropagation();
+      onDeleteNote(note.id);
+    }}
+      className="text-gray-500 hover:text-white hover:bg-red-500 p-1 rounded-md transition-colors"
+    >
+      <TrashIcon className='size-5'/>
+    </button>
+  </div>
 
-              <p className="text-gray-600">{note?.content}</p>
-              <p className="text-gray-600">{note?.date}</p>
+  <p className="text-gray-600 line-clamp-2">
+  {note?.content}
+</p>
+  <p className="text-gray-600">{note?.date}</p>
 
             </div>
           ))}
