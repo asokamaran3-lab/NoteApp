@@ -49,6 +49,7 @@ export default function Form({onAddNote, onClose}) {
           name="title"
           placeholder="Enter note title"
           className="border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400"
+          value={form.title}
           onChange={(e) => setForm(prev => ({...prev, title: e.target.value}))}
         />
       </div>
@@ -64,6 +65,7 @@ export default function Form({onAddNote, onClose}) {
           placeholder="Write your note here..."
           rows="5"
           className="border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:ring-2 focus:ring-blue-400"
+          value={form.content}
           onChange={(e) => setForm(prev => ({...prev, content: e.target.value}))}
           
         />

@@ -17,6 +17,8 @@ export default function NoteApp() {
   ]
   )
 
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
+
   function addNote(title, content) {
 
     const newNote = {
@@ -26,12 +28,28 @@ export default function NoteApp() {
       date: new Date().toLocaleDateString()
 }
 
-  setNotes([...notes, newNote])
+  setNotes((prevNotes) => [...prevNotes, newNote]);
   }
 
     function deleteNote(id) {
-    setNotes(notes.filter((note) => note.id !== id));
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   }
+function updateNote(id, updatedData) {
+  setNotes(prevNotes =>
+    prevNotes.map(note =>
+      note.id === id
+        ? { ...note, ...updatedData }
+        : note
+    )
+  );
+}
+
+  function handleSelectNote(id) {
+  setSelectedNoteId(id);
+}
+const selectedNote = notes.find(
+  (note) => note.id === selectedNoteId
+);
 
   return (
     // Creating the main div//
@@ -39,13 +57,16 @@ export default function NoteApp() {
 
         {/* Left side of the app */}
         <div>
-        <Notes data={notes} onAddNote={addNote}  onDeleteNote={deleteNote}/>
+        <Notes data={notes} onAddNote={addNote}  onDeleteNote={deleteNote} onSelectNote={handleSelectNote}/>
         </div>
 
 
         {/* //Right side of the app// */}
         <div className="flex-1 h-screen">
-           <NoteDetail/>
+           <NoteDetail
+  note={selectedNote}
+  onUpdateNote={updateNote}
+/>
         </div>
     </div>
   )
