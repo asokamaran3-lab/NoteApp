@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Form from "../components/Form"
 import { TrashIcon } from 'lucide-react'
 
@@ -7,7 +7,9 @@ export default function Notes({data, onAddNote, onDeleteNote}) {
   const [showForm, setShowForm] = useState(false)
 
   const [search, setSearch] = useState("");
-  const filteredData = search ? data.filter((el)=> el.title.toLowerCase().includes(search.toLowerCase())) : data
+  const filteredData = search ? data.filter((el)=> {
+   return el.title.toLowerCase().includes(search.toLowerCase()) ||  el.content.toLowerCase().includes(search.toLowerCase())
+  }) : data
   return (
 
     
