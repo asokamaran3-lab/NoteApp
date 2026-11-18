@@ -11,8 +11,6 @@ export default function Notes({data, onAddNote, onDeleteNote}) {
    return el.title.toLowerCase().includes(search.toLowerCase()) ||  el.content.toLowerCase().includes(search.toLowerCase())
   }) : data
   return (
-
-    
     <div className="border-r border-gray-100 h-screen w-80 shadow-lg pt-6 px-4" >
 
       {/* The container */}
