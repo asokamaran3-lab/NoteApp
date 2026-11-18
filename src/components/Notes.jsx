@@ -60,16 +60,19 @@ export default function Notes({data, onAddNote, onDeleteNote, onSelectNote}) {
             ? <p>Your Note list is empty!</p>
             : filteredData?.map((note) => (
 
-            <div key={note.id} className="bg-gray-100 p-4 rounded-xl w-full">
+            <div 
+              onClick={() => onSelectNote(note.id)} 
+              key={note.id} 
+              className="bg-gray-100 p-4 rounded-xl w-full cursor-pointer">
 
               <div className="flex justify-between items-center">
                 <h3 className="font-bold">{note?.title}</h3>
 
-    <button
-      onClick={(e) => {
-      e.stopPropagation();
-      onDeleteNote(note.id);
-    }}
+              <button
+                onClick={(e) => {
+                e.stopPropagation();
+                onDeleteNote(note.id);
+              }}
       className="text-gray-500 hover:text-white hover:bg-red-500 p-1 rounded-md transition-colors"
     >
       <TrashIcon className='size-5'/>

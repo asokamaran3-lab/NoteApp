@@ -57,7 +57,7 @@ const selectedNote = notes.find(
 
         {/* Left side of the app */}
         <div>
-        <Notes data={notes} onAddNote={addNote}  onDeleteNote={deleteNote} onSelectNote={handleSelectNote}/>
+        <Notes data={notes} onAddNote={addNote}  onDeleteNote={deleteNote} onSelectNote={(id) => handleSelectNote(id)}/>
         </div>
 
 
